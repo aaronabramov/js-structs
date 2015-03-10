@@ -24,6 +24,8 @@
  *  myObj.set('fieldB', 99) // => Error: 'Type violation'
  *  myObj.set('fieldC', 1000) // => Error: 'Contract violation'
  *  myObj.set('undefinedField', 40) // => Error: 'Undefined field'
+ *
+ *  hey Gopal! what's up?
  */
 
 
@@ -42,7 +44,7 @@ function Struct() {}
  * @param {String} name attribute name
  */
 Struct.prototype.get = function(name) {
-    if (this.definition[name]) {
+    if (!this.definition[name]) {
         throw new Error('unknown attribute: ' + name);
     }
     return this.attributes[name];
@@ -56,7 +58,7 @@ Struct.prototype.set = function(name, value) {
     var def = this.definition[name],
         invalidMessage;
 
-    if (def) {
+    if (!def) {
         throw new Error('unknown attribute: ' + name);
     }
 
